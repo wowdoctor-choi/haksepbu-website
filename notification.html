@@ -129,7 +129,7 @@
     async function loadNotices() {
      try {
      // data.json 파일을 읽어오라고 시킵니다 (Fetch)
-     const response = await fetch('data.json');
+     const response = await fetch('data.json?v=' + Date.now());
      const notices = await response.json(); // 읽은 걸 자바스크립트 언어로 번역
 
     // 2. HTML을 집어넣을 상자를 찾습니다
@@ -161,4 +161,5 @@
 loadNotices();
  </script>
 </body>
+
 </html>
