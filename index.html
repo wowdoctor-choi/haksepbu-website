@@ -68,18 +68,27 @@
         }
 
         .content {
-         /* 1. 그리드 마법 발동! */
-         display: grid;
-    
-         /* 2. 3칸으로 나누기 (비율 중요!) */
-         /* 왼쪽(1) : 가운데(4) : 오른쪽(1) 비율 */
-         /* 가운데 글씨가 중요하니까 제일 넓게 줍니다 */
-         grid-template-columns: 1fr 4fr 1fr; 
-    
-         /* 3. 내용물 가운데 정렬 */
-         align-items:baseline; /* 세로 가운데 */
-         text-align: center;  /* 글자 가운데 */
+         display: flex;
+         gap: 20px;      /* 사이 간격 20px */
+         height: 100vh;  /* 높이 꽉 차게 */
         }
+
+        /* 2:2:2 비율 (결국 3등분) */
+         .box-a {
+         flex: 2;
+         background: #ffffff;
+        }
+
+        .box-b {
+         flex: 2;
+         background: #ffffff; /* 가운데만 색 다르게 */
+         text-align: center;
+        }
+
+        .box-c {
+         flex: 2;
+         background: #ffffff;
+        }  
     </style>
 </head>
 <body>
@@ -94,25 +103,14 @@
    </aside>
    
    <main class="content">
-    
-     <div class="side-left">
-         <img src="농부.png" alt="농부" width="80">
-        <br><br> <img src="호랑이.png" alt="호랑이" width="80">
-     </div>
 
-     <div class="center-text">
+     <div class="box-b">
          <h1 class="fade-in">학습부</h1>
          <img src="학습부.jpg" alt="로고" width="200" class="fade-in">
          <p class="fade-in">학습부는 2025년에 설립된 팀입니다.
           <br>여러분의 학습을 돕기 위해 노력하고 있습니다. 
           <br>학습게임, 유튜브 채널을 운영중입니다. 
          </p>
-     </div>
-
-     <div class="side-right">
-         <img src="가야.png" alt="가야왕" width="80">
-         <br><br>
-         <img src="ai.png" alt="ai" width="80">
      </div>
 
     </main>
