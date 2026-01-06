@@ -89,6 +89,81 @@
          background: #ffffff;
          text-align: center;
         }
+
+        /* 공통 안정화 */
+        * {
+         box-sizing: border-box;
+        }
+
+        img {
+         max-width: 100%;
+         height: auto;
+         display: block;
+         margin: 0 auto;
+       }
+
+      /* 🔹 모바일 레이아웃 */
+       @media (max-width: 768px) {
+
+       /* 전체 레이아웃: 사이드바 + 콘텐츠 → 세로 */
+      .main-container {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+     /* 사이드바 */
+    .sidebar {
+      padding: 10px;
+      text-align: center;
+    }
+
+    .sidebar ul {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .sidebar li a {
+      padding: 12px;
+      font-size: 16px;
+    }
+
+    /* 본문 영역 */
+    .content {
+      flex-direction: column; /* 가로 → 세로 */
+      height: auto;           /* 100vh 제거 */
+      gap: 20px;
+    }
+
+    /* 박스들 전체 폭 */
+    .box-a,
+    .box-b,
+    .box-c {
+      width: 100%;
+    }
+
+    /* 의미 없는 빈 박스 제거 */
+    .box-c {
+      display: none;
+    }
+
+    /* 제목 크기 조정 */
+    h1 {
+      font-size: 24px;
+    }
+
+    h2 {
+      font-size: 20px;
+    }
+
+    /* 버튼 터치 최적화 */
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+    }
+  }
+
     </style>
 </head>
 <body>
@@ -135,4 +210,5 @@
     });
  </script>
 </body>
+
 </html>
