@@ -99,11 +99,10 @@
      </div>
 
      <div class="center-text">
-         <h1 class="fade-in">기타</h1>
-         <h2 class="fade-in">SNS</h2>
-         <a href="https://www.youtube.com/@%ED%95%99%EC%8A%B5%EB%B6%80tv">
-          <img src="https://i.namu.wiki/i/96PzWjU0X4PJWSDG6rRFFgG3dkGLIw06-YMpHg_CVHnURSIHuxA9sF9CrJoXsZISwWeo19Y3LgIQnL1krbrcOg.svg" width="50" class="fade-in">
-         </a>
+         <h1 class="fade-in">공지사항</h1>
+        <div id="notice-board">
+          <p>데이터를 불러오는 중입니다...</p>
+        </div>
      </div>
 
      <div class="side-right">
@@ -125,6 +124,41 @@
       });
      }, 100);
     });
+
+    // 1. 데이터를 가져오는 함수
+    async function loadNotices() {
+     try {
+     // data.json 파일을 읽어오라고 시킵니다 (Fetch)
+     const response = await fetch('data.json');
+     const notices = await response.json(); // 읽은 걸 자바스크립트 언어로 번역
+
+    // 2. HTML을 집어넣을 상자를 찾습니다
+    const board = document.getElementById('notice-board');
+     board.innerHTML = ""; // "로딩 중..." 메시지 지우기
+
+    // 3. 데이터 개수만큼 반복해서 HTML을 만듭니다 (Loop)
+    notices.forEach(notice => {
+      // 백틱(`)을 쓰면 HTML을 쉽게 짤 수 있어요!
+      const html = `
+        <div class="notice-item" style="border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;">
+          <h3 style="margin: 0;">${notice.title}</h3>
+          <small style="color: gray;">${notice.date}</small>
+          <p>${notice.content}</p>
+        </div>
+      `;
+
+      // 만든 HTML을 상자에 추가합니다 (append)
+      board.innerHTML += html; 
+    });
+
+    } catch (error) {
+     console.error("에러가 났어요!:", error);
+     document.getElementById('notice-board').innerText = "공지사항을 불러오지 못했습니다.";
+    }
+  }
+
+// 페이지가 켜지면 바로 실행!
+loadNotices();
  </script>
 </body>
 </html>
