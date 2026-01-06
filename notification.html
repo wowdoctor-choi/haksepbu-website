@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>학습부</title>
     <link rel="icon" href="학습부.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         .main-container {
          display: grid;
@@ -27,6 +28,7 @@
         .content {
          padding: 20px;
          color: rgb(0, 26, 255);
+         text-align: center;
         }
 
         /* 처음 상태: 투명하고 20px 아래에 있음 */
@@ -65,18 +67,30 @@
          border-radius: 5px;        /* 모서리 살짝 둥글게 */
         }
 
-        .content {
-         /* 1. 그리드 마법 발동! */
-         display: grid;
-    
-         /* 2. 3칸으로 나누기 (비율 중요!) */
-         /* 왼쪽(1) : 가운데(4) : 오른쪽(1) 비율 */
-         /* 가운데 글씨가 중요하니까 제일 넓게 줍니다 */
-         grid-template-columns: 1fr 4fr 1fr; 
-    
-         /* 3. 내용물 가운데 정렬 */
-         align-items:baseline; /* 세로 가운데 */
-         text-align: center;  /* 글자 가운데 */
+        .youtube-link {
+         text-align: center; /* 가운데 정렬 */
+         margin-top: 20px;
+        }
+
+        .youtube-link a {
+         text-decoration: none; /* 밑줄 없애기 */
+         font-size: 20px;       /* 글자 크기 */
+         color: #333;           /* 글자색 (검정) */
+         font-weight: bold;
+         display: inline-flex;  /* 아이콘과 글자 높이 맞추기 */
+         align-items: center;
+         gap: 10px;             /* 아이콘과 글자 사이 간격 */
+        }
+
+        /* 🟥 유튜브 아이콘만 빨간색으로! */
+        .fa-youtube {
+         color: #ff0000; /* 유튜브 레드 */
+         font-size: 28px; /* 아이콘은 글자보다 조금 더 크게 */
+        }
+
+        /* 마우스 올리면 색 변하기 */
+         .youtube-link a:hover {
+         color: #ff0000;
         }
     </style>
 </head>
@@ -92,23 +106,18 @@
    </aside>
    
    <main class="content">
-    
-     <div class="side-left">
-         <img src="농부.png" alt="농부" width="80">
-        <br><br> <img src="호랑이.png" alt="호랑이" width="80">
-     </div>
-
-     <div class="center-text">
+     <div>
          <h1 class="fade-in">공지사항</h1>
-        <div id="notice-board">
+        <div id="notice-board" class="fade-in">
           <p>데이터를 불러오는 중입니다...</p>
         </div>
      </div>
 
-     <div class="side-right">
-         <img src="가야.png" alt="가야왕" width="80">
-         <br><br>
-         <img src="ai.png" alt="ai" width="80">
+     <div class="youtube-link">
+      <a href="https://www.youtube.com/@학습부tv" target="_blank">
+        <i class="fa-brands fa-youtube"></i> 
+        <footer>학습부 공식 채널</footer>
+      </a>
      </div>
 
     </main>
@@ -129,7 +138,7 @@
     async function loadNotices() {
      try {
      // data.json 파일을 읽어오라고 시킵니다 (Fetch)
-     const response = await fetch('data.json?v=' + Date.now());
+     const response = await fetch('data.json');
      const notices = await response.json(); // 읽은 걸 자바스크립트 언어로 번역
 
     // 2. HTML을 집어넣을 상자를 찾습니다
@@ -161,5 +170,4 @@
 loadNotices();
  </script>
 </body>
-
 </html>
