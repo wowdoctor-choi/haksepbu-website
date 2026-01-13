@@ -67,7 +67,7 @@
 
         .content {
          display: flex;
-         gap: 10px;      /* 사이 간격 10px */
+         gap: 0px;      /* 사이 간격 0px */
          height: 100vh;  /* 높이 꽉 차게 */
         }
 
@@ -89,81 +89,6 @@
          background: #ffffff;
          text-align: center;
         }
-
-        /* 공통 안정화 */
-        * {
-         box-sizing: border-box;
-        }
-
-        img {
-         max-width: 100%;
-         height: auto;
-         display: block;
-         margin: 0 auto;
-       }
-
-      /* 🔹 모바일 레이아웃 */
-       @media (max-width: 768px) {
-
-       /* 전체 레이아웃: 사이드바 + 콘텐츠 → 세로 */
-      .main-container {
-        grid-template-columns: 1fr;
-        gap: 0;
-      }
-
-     /* 사이드바 */
-    .sidebar {
-      padding: 10px;
-      text-align: center;
-    }
-
-    .sidebar ul {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .sidebar li a {
-      padding: 12px;
-      font-size: 16px;
-    }
-
-    /* 본문 영역 */
-    .content {
-      flex-direction: column; /* 가로 → 세로 */
-      height: auto;           /* 100vh 제거 */
-      gap: 20px;
-    }
-
-    /* 박스들 전체 폭 */
-    .box-a,
-    .box-b,
-    .box-c {
-      width: 100%;
-    }
-
-    /* 의미 없는 빈 박스 제거 */
-    .box-c {
-      display: none;
-    }
-
-    /* 제목 크기 조정 */
-    h1 {
-      font-size: 24px;
-    }
-
-    h2 {
-      font-size: 20px;
-    }
-
-    /* 버튼 터치 최적화 */
-    button {
-      padding: 12px 20px;
-      font-size: 16px;
-      border-radius: 8px;
-    }
-  }
-
     </style>
 </head>
 <body>
@@ -173,26 +98,28 @@
      <ul>
       <li><a href="index.html">홈</a></li>
       <li><a href="game.html">게임 목록</a></li>
+      <li><a href="youtube.html">유튜브 채널</a></li>
       <li><a href="notification.html">공지사항/기타</a></li>
      </ul>
    </aside>
    
    <main class="content">
 
-     <div class="box-b">
-         <br><br><br><h2 class="fade-in">1. 학습부 타워 디펜스 게임</h2>
-         <img src="타워디펜스.png" alt="타워디펜스" width="200" class="fade-in">
+     <div class="box-a">
+         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><h2 class="fade-in">1. 학습부 타워 디펜스 게임</h2>
+         <img src="타워디펜스.png" alt="타워디펜스" width="300" class="fade-in">
          <a href="https://wowdoctor-choi.github.io/tower-history/">
           <br><button type="button" class="fade-in">게임하기</button>
          </a>
      </div>
 
      <div class="box-b">
-         <h1 class="fade-in">게임 목록</h1>
+         <img src="게임 슬로건.png" alt="플레이가 곧 공부가 되는 곳" width="1300px" height="560px">
+         <h1 class="fade-in" style="font-size: 50px;">게임 목록</h1>
+         <br><h3>준비중...</h3>
      </div>
 
      <div class="box-c">
-
      </div>
 
     </main>
@@ -210,5 +137,4 @@
     });
  </script>
 </body>
-
 </html>

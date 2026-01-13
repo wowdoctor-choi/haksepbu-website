@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>학습부</title>
     <link rel="icon" href="학습부.jpg">
+    <meta name="google-site-verification" content="U_fsmiUnPn3En8A5LUAtZ1t_oFgjgti8zmgrKftk0eE" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         .main-container {
@@ -28,7 +29,6 @@
         .content {
          padding: 20px;
          color: rgb(0, 26, 255);
-         text-align: center;
         }
 
         /* 처음 상태: 투명하고 20px 아래에 있음 */
@@ -67,6 +67,35 @@
          border-radius: 5px;        /* 모서리 살짝 둥글게 */
         }
 
+        .content {
+         display: flex;
+         gap: 0px;      /* 사이 간격 0px */
+         height: 100vh;  /* 높이 꽉 차게 */
+        }
+
+        /* 2:2:2 비율 (결국 3등분) */
+         .box-a {
+         flex: 2;
+         background: #ffffff;
+         text-align: center;
+        }
+
+        .box-b {
+         flex: 2;
+         background: #ffffff; /* 가운데만 색 다르게 */
+         /* 내용물 가운데 정렬 세트 */
+         display: flex;
+         flex-direction: column; /* 위에서 아래로 쌓이게 */
+         align-items: center;    /* 가로 기준 가운데 */
+         text-align: center;     /* 글자 가운데 */
+        }
+
+        .box-c {
+         flex: 2;
+         background: #ffffff;
+         text-align: center;
+        }  
+
         .youtube-link {
          text-align: center; /* 가운데 정렬 */
          margin-top: 20px;
@@ -86,11 +115,11 @@
         .fa-youtube {
          color: #ff0000; /* 유튜브 레드 */
          font-size: 28px; /* 아이콘은 글자보다 조금 더 크게 */
-        }
+        }  
 
         /* 마우스 올리면 색 변하기 */
-         .youtube-link a:hover {
-         color: #ff0000;
+        .youtube-link a:hover {
+        color: #ff0000;
         }
     </style>
 </head>
@@ -107,18 +136,31 @@
    </aside>
    
    <main class="content">
-     <div>
-         <h1 class="fade-in">공지사항</h1>
-        <div id="notice-board" class="fade-in">
-          <p>데이터를 불러오는 중입니다...</p>
-        </div>
+
+     <div class="box-a">
+      <br><br><br><h3 class="fade-in">오늘의 영어</h3>
+      <iframe width="216" height="284" src="https://www.youtube.com/embed/videoseries?si=6ty-hckHdU9GYvhT&amp;list=PLxzmLBLV6-Z8IVxcv1TARL8u7t1OLMm1e" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
      </div>
 
-     <div class="youtube-link">
-      <a href="https://www.youtube.com/@학습부tv" target="_blank">
-        <i class="fa-brands fa-youtube"></i> 
-        <footer>학습부 공식 채널</footer>
-      </a>
+     <div class="box-b">
+       <h1 class="fade-in">학습부 tv</h1>
+       <img src="학습부.jpg" alt="유튜브 채널 로고" width="250px" class="fade-in">
+            
+       <div class="youtube-link">
+        <a href="https://www.youtube.com/@학습부tv" target="_blank">
+         <i class="fa-brands fa-youtube"></i> 
+         <footer>학습부 공식 채널</footer>
+        </a>
+       </div>
+
+       <a href="https://www.youtube.com/@%ED%95%99%EC%8A%B5%EB%B6%80tv?sub_confirmation=1">
+        <br><img src="구독.png" alt="유튜브 구독 버튼" width="40px">
+       </a>
+     </div>
+
+     <div class="box-c">
+      <br><br><br><h3 class="fade-in">오늘의 중국어</h3>
+      <iframe width="216" height="284" src="https://www.youtube.com/embed/videoseries?si=QULp3w4s0o8-TaoN&amp;list=PLxzmLBLV6-Z9lDSlEFNzhsF_CUtRrLZXz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
      </div>
 
     </main>
@@ -134,41 +176,6 @@
       });
      }, 100);
     });
-
-    // 1. 데이터를 가져오는 함수
-    async function loadNotices() {
-     try {
-     // data.json 파일을 읽어오라고 시킵니다 (Fetch)
-     const response = await fetch('data.json');
-     const notices = await response.json(); // 읽은 걸 자바스크립트 언어로 번역
-
-    // 2. HTML을 집어넣을 상자를 찾습니다
-    const board = document.getElementById('notice-board');
-     board.innerHTML = ""; // "로딩 중..." 메시지 지우기
-
-    // 3. 데이터 개수만큼 반복해서 HTML을 만듭니다 (Loop)
-    notices.forEach(notice => {
-      // 백틱(`)을 쓰면 HTML을 쉽게 짤 수 있어요!
-      const html = `
-        <div class="notice-item" style="border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;">
-          <h3 style="margin: 0;">${notice.title}</h3>
-          <small style="color: gray;">${notice.date}</small>
-          <p>${notice.content}</p>
-        </div>
-      `;
-
-      // 만든 HTML을 상자에 추가합니다 (append)
-      board.innerHTML += html; 
-    });
-
-    } catch (error) {
-     console.error("에러가 났어요!:", error);
-     document.getElementById('notice-board').innerText = "공지사항을 불러오지 못했습니다.";
-    }
-  }
-
-// 페이지가 켜지면 바로 실행!
-loadNotices();
  </script>
 </body>
 </html>
